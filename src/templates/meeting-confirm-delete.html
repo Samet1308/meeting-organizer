@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toplantı Sil</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Toplantı Sil</h1>
+        <p>Bu toplantıyı silmek istediğine emin misin "{{ meeting.subject }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Evet, Sil</button>
+            <a href="{% url 'meeting-list' %}">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toplantı Listesi</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Toplantılar</h1>
+        <a href="{% url 'meeting_create' %}">Yeni Toplantı</a>
+        <ul>
+        {% for meeting in meetings %}
+            <li>
+                {{ meeting.subject }} ({{meeting.participants}}) ({{ meeting.date }} {{ meeting.start_time }} - {{ meeting.end_time }})
+                <a href="{% url 'meeting_update' meeting.pk %}">Güncelle</a>
+                <a href="{% url 'meeting_delete' meeting.pk %}">Toplantı Sil</a>
+            </li>
+            {% empty %}
+            <li>Henüz toplantı bulunmamaktadır.</li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
